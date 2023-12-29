@@ -110,9 +110,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Aboreto
+    - family: Aboreto-Regular
       fonts:
-        - asset: fonts/Aboreto-Regular
+        - asset: fonts/Aboreto-Regular.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
