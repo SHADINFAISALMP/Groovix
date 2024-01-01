@@ -458,8 +458,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
             ),
             backgroundColor: Colors.transparent,
             content: Container(
-              // height: MediaQuery.of(context).size.height * 0.200,
-              // width: MediaQuery.of(context).size.width * 0.6,
               decoration: BoxDecoration(
                   gradient: bgTheme(),
                   borderRadius: BorderRadius.circular(

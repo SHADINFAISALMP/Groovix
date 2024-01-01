@@ -1,11 +1,17 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:groovix/Screenss/privacy.dart';
 import 'package:groovix/Screenss/songs_lists_content.dart';
 import 'package:groovix/Screenss/terms_condition.dart';
 import 'package:groovix/reuseable_widgets.dart';
+
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 showSpeedDialog(BuildContext context, double num) {
   showDialog(
@@ -286,10 +292,12 @@ void showBottomSheetMenu(BuildContext context) {
                 SizedBox(width: MediaQuery.of(context).size.width * 0.04),
                 TextButton(
                   onPressed: () {
+                    Share.share(
+                        "https://www.amazon.com/dp/B0CR7DFY5H/ref=apps_sf_sta");
                     Navigator.pop(context);
                   },
                   child: mytext(
-                    'Share',
+                    'Share App',
                     MediaQuery.of(context).size.width * 0.045,
                     color1white,
                   ),
@@ -318,6 +326,7 @@ void showBottomSheetMenu(BuildContext context) {
                   TextButton(
                     onPressed: () {
                       Navigator.pop(context);
+                      _showRateUsDialog(context);
                     },
                     child: mytext(
                       'Rate Us',
@@ -341,4 +350,91 @@ void showBottomSheetMenu(BuildContext context) {
       );
     },
   );
+}
+
+_showRateUsDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(
+            MediaQuery.of(context).size.width * 0.0267,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        content: Container(
+          decoration: BoxDecoration(
+            gradient: bgTheme(),
+            borderRadius: BorderRadius.circular(
+              MediaQuery.of(context).size.width * 0.0267,
+            ),
+            boxShadow: const [
+              BoxShadow(
+                blurRadius: 4.0,
+                offset: Offset(-2, -2),
+                color: Colors.white10,
+              ),
+              BoxShadow(
+                blurRadius: 6.0,
+                offset: Offset(7, 7),
+                color: Colors.black,
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+              mytext('Rate Us ', 18, color1white),
+              Divider(
+                thickness: 1,
+                color: color1white,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.015),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Would you like to rate our app on the Amazon store?',
+                  style: GoogleFonts.aboreto(fontSize: 18, color: color1white),
+                ),
+              ),
+              RatingBar.builder(
+                allowHalfRating: true,
+                unratedColor: color1white,
+                itemBuilder: (context, index) => Icon(
+                  Icons.star,
+                  color: Colors.amberAccent,
+                ),
+                onRatingUpdate: (rating) {
+                  if (rating.toInt() < 0) {
+                    Navigator.pop(context);
+                  } else {
+                    Navigator.pop(context);
+                    launchURL();
+                  }
+                },
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: mytext(
+                    'Cancel',
+                    14 * MediaQuery.of(context).size.width / 375.0,
+                    color3blueaccent),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}
+
+Future<void> launchURL() async {
+  // ignore: deprecated_member_use
+  if (await launch('https://www.amazon.com/dp/B0CR7DFY5H/ref=apps_sf_sta')) {
+    throw "Try Again";
+  }
 }

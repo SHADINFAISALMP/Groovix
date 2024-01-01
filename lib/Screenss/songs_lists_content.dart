@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:groovix/Screenss/audio_query.dart';
+
 import 'package:groovix/Screenss/music_play_screen.dart';
 import 'package:groovix/bottom_sheets/bottom_sheet_menu.dart';
 import 'package:groovix/bottom_sheets/home_song_list_settings.dart';
@@ -23,13 +23,7 @@ class HomeContent extends StatefulWidget {
 }
 
 class _HomeContentState extends State<HomeContent> {
-  final GetAudio _getAudio = GetAudio();
   final AudioPlayer _audioPlayer = AudioPlayer();
-  @override
-  void initState() {
-    super.initState();
-    _getAudio.requestPermision();
-  }
 
   // Track liked songs+
   Set<int> likedSongs = {};
@@ -66,17 +60,11 @@ class _HomeContentState extends State<HomeContent> {
       future: music(),
       builder: (context, item) {
         if (item.data == null) {
-          GetAudio();
+          // GetAudio();
           return const Center(child: CircularProgressIndicator());
         } else if (item.data!.isEmpty) {
           return const Center(
             child: Text('no songs'),
-          );
-        } else if (item.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (item.hasError) {
-          return const Center(
-            child: Text('Error No Songs'),
           );
         } else {
           return ListView.builder(

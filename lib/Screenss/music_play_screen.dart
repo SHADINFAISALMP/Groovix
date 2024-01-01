@@ -226,26 +226,23 @@ class _MusicPlayScreenState extends State<MusicPlayScreen> {
                             ),
                             scrollAxis: Axis.horizontal,
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            blankSpace: 10.0 *
-                                MediaQuery.of(context).size.width /
-                                375.0,
-                            velocity: 40.0 *
-                                MediaQuery.of(context).size.width /
-                                375.0,
                           ),
                         ),
                         // SizedBox(height: 10),
-                        Text(
-                          widget.songModel[widget.index].artist.toString() ==
-                                  "<unknown"
-                              ? " Unknown Artist"
-                              : widget.songModel[widget.index].artist
-                                  .toString(),
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.aboreto(
-                            color: color1white,
-                            fontSize:
-                                15 * MediaQuery.of(context).size.width / 375.0,
+                        Expanded(
+                          child: Text(
+                            widget.songModel[widget.index].artist.toString() ==
+                                    "<unknown"
+                                ? " Unknown Artist"
+                                : widget.songModel[widget.index].artist
+                                    .toString(),
+                            overflow: TextOverflow.ellipsis,
+                            style: GoogleFonts.aboreto(
+                              color: color1white,
+                              fontSize: 15 *
+                                  MediaQuery.of(context).size.width /
+                                  375.0,
+                            ),
                           ),
                         ),
                         SizedBox(

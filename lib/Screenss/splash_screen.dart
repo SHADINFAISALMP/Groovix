@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:groovix/Screenss/audio_query.dart';
 import 'package:groovix/Screenss/home_screen.dart';
 
 
@@ -13,10 +14,12 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> {  
+  final GetAudio _getAudio = GetAudio();
   @override
   void initState() {
-    super.initState();
+  
+    
 
     debugPrint('heyy');
     Timer(
@@ -26,6 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
         MaterialPageRoute(builder: (context) => const HomeScreen()),
       ),
     );
+   
+    _getAudio.requestPermision();
+  
+
+      super.initState();
   }
 
   @override
