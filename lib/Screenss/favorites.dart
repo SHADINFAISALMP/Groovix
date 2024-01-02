@@ -263,7 +263,7 @@ class _LikedScreenState extends State<LikedScreen> {
                                   );
                                 },
                                 title: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Text(

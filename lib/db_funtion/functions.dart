@@ -197,6 +197,6 @@ Future<List<MusicSong>> recentlyPlayedSongs() async {
   return recents.reversed.toList();
 }
 
-sharemusic(String sh) async {
+Future<void> sharemusic(String sh) async {
   await Share.shareFiles([sh]);
 }
