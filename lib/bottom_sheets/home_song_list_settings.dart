@@ -1,13 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:groovix/Screenss/music_play_screen.dart';
 import 'package:groovix/bottom_sheets/add_to_playlist.dart';
-import 'package:groovix/db_funtion/functions.dart';
 import 'package:groovix/db_model/db_model.dart';
 import 'package:groovix/providerr/song_model_provider.dart';
 import 'package:groovix/reuseable_widgets.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
+
+import 'package:share_plus/share_plus.dart';
 
 void showBottomSheetSongSettings(BuildContext context, List<MusicSong> sm,
     AudioPlayer audio, int ind, int songid) {
@@ -141,7 +144,7 @@ void showBottomSheetSongSettings(BuildContext context, List<MusicSong> sm,
                           );
                         });
                     try {
-                      await sharemusic(sm[ind].path);
+                    await  shareSong(sm[ind]);
                     } finally {
                       // ignore: use_build_context_synchronously
                       Navigator.pop(context);
@@ -160,4 +163,20 @@ void showBottomSheetSongSettings(BuildContext context, List<MusicSong> sm,
       );
     },
   );
+}
+Future<void> shareSong(MusicSong sn) async {
+  final song =sn;
+
+  if (song.path.isNotEmpty) {
+    final file = File(song.path);
+
+    if (await file.exists()) {
+      await Share.shareFiles([song.path]
+         );
+    } else {
+      debugPrint('File not found: ${song.uri}');
+    }
+  } else {
+    debugPrint('File path is empty');
+  }
 }

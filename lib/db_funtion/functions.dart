@@ -4,7 +4,6 @@ import 'package:groovix/db_model/db_playlist_model.dart';
 import 'package:groovix/db_model/db_recently_model.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:share/share.dart';
 
 Future<void> addSong({required List<SongModel> s}) async {
   debugPrint('hello');
@@ -197,6 +196,6 @@ Future<List<MusicSong>> recentlyPlayedSongs() async {
   return recents.reversed.toList();
 }
 
-Future<void> sharemusic(String sh) async {
-  await Share.shareFiles([sh]);
-}
+// sharemusic(String sh) async {
+//   await Share.shareFiles([sh]);
+// }

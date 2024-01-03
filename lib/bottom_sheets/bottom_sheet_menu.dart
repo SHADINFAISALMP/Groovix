@@ -10,7 +10,8 @@ import 'package:groovix/Screenss/songs_lists_content.dart';
 import 'package:groovix/Screenss/terms_condition.dart';
 import 'package:groovix/reuseable_widgets.dart';
 
-import 'package:share/share.dart';
+
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 showSpeedDialog(BuildContext context, double num) {
