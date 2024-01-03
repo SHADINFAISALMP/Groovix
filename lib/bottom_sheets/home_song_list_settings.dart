@@ -171,6 +171,7 @@ Future<void> shareSong(MusicSong sn) async {
     final file = File(song.path);
 
     if (await file.exists()) {
+      // ignore: deprecated_member_use
       await Share.shareFiles([song.path]
          );
     } else {
