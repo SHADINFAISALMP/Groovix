@@ -340,7 +340,7 @@ void showBottomSheetMenu(BuildContext context) {
             ),
             Center(
               child: mytext(
-                'Version 1.0.0',
+                'Version 1.0.1',
                 MediaQuery.of(context).size.width * 0.04,
                 color1white,
               ),
